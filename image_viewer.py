@@ -12,6 +12,7 @@ image5 = ImageTk.PhotoImage(Image.open('./cats/5.jpeg'))
 
 cat_images = [image1, image2, image3, image4, image5]
 
+
 def update_image(num):
     global cat_label, next_btn, back_btn
 
@@ -21,7 +22,7 @@ def update_image(num):
 
     back_btn = tk.Button(root, text='Back', command=lambda: backbtn_handler(num - 1))
     next_btn = tk.Button(root, text='Next', command=lambda: nextbtn_handler(num + 1))
-
+    status=tk.Label(text=f'Image {num} of {len(cat_images)}',bd=1,relief="sunken",anchor='e')
     if num == 1:
         back_btn.config(state='disabled')
     else:
@@ -34,6 +35,7 @@ def update_image(num):
 
     back_btn.grid(row=1, column=0)
     next_btn.grid(row=1, column=2)
+    status.grid(row=2,column=0,columnspan=3,pady=10,padx=5,sticky='w'+'e')
 
 def nextbtn_handler(num):
     update_image(num)
@@ -52,5 +54,7 @@ quit_btn.grid(row=1, column=1)
 
 next_btn = tk.Button(root, text='Next', command=lambda: nextbtn_handler(2))
 next_btn.grid(row=1, column=2)
+status=tk.Label(text=f'Image 1 of {len(cat_images)}',bd=1,relief="sunken",anchor='e') #bd & relief are for styling
+status.grid(row=2,column=0,columnspan=3,pady=10,padx=5,sticky='w'+'e')
 
 root.mainloop()
